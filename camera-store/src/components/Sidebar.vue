@@ -10,6 +10,12 @@
     <v-btn color="#F2F2F2" variant="text" :ripple="false" href="/">Плёночные фотоаппараты</v-btn>
     <v-btn color="#F2F2F2" variant="text" :ripple="false" href="/">Фотоплёнки</v-btn>
     <v-btn color="#F2F2F2" variant="text" :ripple="false" href="/">Все товары</v-btn>
+    <div class="about_info">
+      © 2023<br>
+      ООО "Апертура"<br>
+      117105 Москва, Варшавское шоссе, 26<br>
+      +78005553535<br>
+    </div>
   </div>
 </template>
 

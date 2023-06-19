@@ -1,3 +1,7 @@
+body {
+    background-color: #B4D2D9;
+  }
+
 v-img {
     padding: 10px;
 }
@@ -6,10 +10,26 @@ v-btn {
     color: white;
 }
 
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+.MainContent {
+    padding: 10px;
+}
+
+
 .sidebar {
-    background-color: #365359;
+    max-width: 50%;
+    background-color: #58838C;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    padding: 10px;
+}
+.about_info {
+    margin-top: auto;
+    background-color: #B4D2D9;
+    padding: 10px;
     text-align: center;
 }

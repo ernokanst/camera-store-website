@@ -1,0 +1,15 @@
+v-img {
+    padding: 10px;
+}
+
+v-btn {
+    color: white;
+}
+
+.sidebar {
+    background-color: #365359;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}

@@ -19,7 +19,6 @@ main {
     padding: 10px;
 }
 
-
 .sidebar {
     max-width: 50%;
     background-color: #58838C;
@@ -27,9 +26,14 @@ main {
     flex-direction: column;
     padding: 10px;
 }
+
 .about_info {
     margin-top: auto;
     background-color: #B4D2D9;
     padding: 10px;
     text-align: center;
+}
+
+.v-application.v-theme--light.v-layout.v-layout--full-height.v-locale--is-ltr {
+    --v-theme-background: #B4D2D9;
 }

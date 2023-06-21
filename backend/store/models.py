@@ -28,7 +28,7 @@ class Order(models.Model):
     delivery_ch = [(0, "В магазине"), (1, "Доставка"), (2, "ПВЗ")]
     payment = models.IntegerField(choices=payment_ch, default=0)
     delivery = models.IntegerField(choices=delivery_ch, default=0)
-    address = models.CharField(max_length=100, null=True)
+    address = models.CharField(max_length=100, default=None, blank=True, null=True)
 
     def __str__(self):
         return str(self.id)

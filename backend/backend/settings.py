@@ -57,7 +57,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates', '../camera-store/dist'],
+        'DIRS': [BASE_DIR / 'templates', BASE_DIR / '../camera-store/dist'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,7 +121,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 MEDIA_URL = "/"
-MEDIA_ROOT = "../camera-store/dist"
+MEDIA_ROOT = BASE_DIR / "../camera-store/dist"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

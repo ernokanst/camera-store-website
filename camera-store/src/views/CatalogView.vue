@@ -1,0 +1,66 @@
+<script setup>
+import Sidebar from '/src/components/Sidebar.vue';
+</script>
+
+<template>
+  <main>
+    <Sidebar />
+    <div class="MainContent">
+    <v-container fluid>
+      <v-row dense v-if="items.length">
+        <v-col
+          v-for="card in items"
+          :key="card.name"
+          :cols="4"
+        >
+          <v-card
+    class="mx-auto"
+    max-width="500"
+  >
+    <v-img
+      :src="card.image"
+      height="300px"
+      cover
+    ></v-img>
+
+    <v-card-title v-text="card.name">
+    </v-card-title>
+
+    <v-card-subtitle v-text="card.description">
+    </v-card-subtitle>
+
+    <v-card-actions>
+      <v-btn
+        color="#58838C"
+        variant="text"
+      >
+        В корзину
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+        </v-col>
+      </v-row>
+      <div v-else>Товары не найдены :(</div>
+    </v-container>
+</div>
+</main>
+</template>
+
+<script>
+  import axios from 'axios';
+  export default {
+  data() {
+    return { items: [] }
+  },
+  created: function() {
+    axios.get('/api/items/')
+    .then((response) => {
+      console.log(response.data);
+      this.items = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+}
+</script>

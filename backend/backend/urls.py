@@ -19,7 +19,7 @@ from django.urls import include, path
 from django.conf.urls.static import static
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets, permissions
-from store.models import StoreItem, Category
+from store.models import StoreItem, Category, Order
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
@@ -52,11 +52,21 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Order
+        fields = ['id', 'user', 'items', 'payment', 'delivery', 'address']
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'items', ItemViewSet)
 router.register(r'categories', CategoryViewSet)
+router.register(r'orders', OrderViewSet)
 
 schema_view = get_schema_view(
    openapi.Info(

@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_celery_beat',
+    'django_celery_results',
     'drf_yasg',
     'rest_framework',
     'store.apps.StoreConfig',
@@ -141,3 +143,6 @@ EMAIL_HOST = '0.0.0.0'
 EMAIL_PORT = 1025
 
 ADMINS = [("ernokanst", "ernokanst@gmail.com")]
+
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_CACHE_BACKEND = 'django-cache'

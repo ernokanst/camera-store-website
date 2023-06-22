@@ -13,7 +13,7 @@ import Sidebar from '/src/components/Sidebar.vue';
           :key="card.name"
           :cols="4"
         >
-          <v-card
+        <router-link :to="'/item/' + card.id"><v-card
     class="mx-auto"
     min-width="300"
     max-width="500"
@@ -38,7 +38,7 @@ import Sidebar from '/src/components/Sidebar.vue';
         В корзину
       </v-btn>
     </v-card-actions>
-  </v-card>
+  </v-card></router-link>
         </v-col>
       </v-row>
       <div v-else>Товары не найдены :(</div>
@@ -56,7 +56,6 @@ import Sidebar from '/src/components/Sidebar.vue';
   created: function() {
     if (this.$route.params.id === 'all')  {
       axios.get('/api/items/').then((response) => {
-      console.log(response.data);
       this.items = response.data;
     })
     .catch(function (error) {
@@ -64,7 +63,6 @@ import Sidebar from '/src/components/Sidebar.vue';
     });
     } else {
       axios.get('/api/items/?category=' + this.$route.params.id).then((response) => {
-      console.log(response.data);
       this.items = response.data;
     })
     .catch(function (error) {

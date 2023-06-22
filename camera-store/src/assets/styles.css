@@ -6,6 +6,10 @@ v-img {
     padding: 10px;
 }
 
+header {
+    padding: 10px;
+}
+
 v-btn {
     color: white;
 }
@@ -42,3 +46,8 @@ main {
 .v-application.v-theme--light.v-layout.v-layout--full-height.v-locale--is-ltr {
     --v-theme-background: #B4D2D9;
 }
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }

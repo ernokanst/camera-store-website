@@ -25,44 +25,55 @@ from drf_yasg import openapi
 from django_filters.rest_framework import DjangoFilterBackend
 
 # Serializers define the API representation.
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ['url', 'username', 'email', 'is_staff']
 
 # ViewSets define the view behavior.
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
 
 class ItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = StoreItem
         fields = ['id', 'name', 'category', 'description', 'price', 'image', 'quantity']
 
+
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = StoreItem.objects.all()
     serializer_class = ItemSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category']    
+    filterset_fields = ['category']
+
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
         fields = ['id', 'category_name']
 
+
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         fields = ['id', 'user', 'items', 'payment', 'delivery', 'address']
 
+
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()

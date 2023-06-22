@@ -8,7 +8,7 @@ from .models import Category, StoreItem, Order
 
 class OrderAdmin(admin.ModelAdmin):
     actions = ["send_report"]
-    
+
     @admin.action(description="Отчёт о заказах")
     def send_report(self, request, queryset):
         today = timezone.now()
@@ -30,7 +30,7 @@ class OrderAdmin(admin.ModelAdmin):
                     case 1:
                         message += f"Необходимо доставить по адресу: {order.address}.\n"
                     case 2:
-                        message += f"Необходимо доставить в ПВЗ по адресу: {order.address}.\n"                    
+                        message += f"Необходимо доставить в ПВЗ по адресу: {order.address}.\n"
             subject = (
                 f"Отчёт о заказах"
             )

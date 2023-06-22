@@ -20,7 +20,7 @@ def send_report():
                 case 1:
                     message += f"Необходимо доставить по адресу: {order.address}.\n"
                 case 2:
-                    message += f"Необходимо доставить в ПВЗ по адресу: {order.address}.\n"                    
+                    message += f"Необходимо доставить в ПВЗ по адресу: {order.address}.\n"
         subject = (
             f"Отчёт о заказах"
         )

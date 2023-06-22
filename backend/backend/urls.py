@@ -22,6 +22,7 @@ from rest_framework import routers, serializers, viewsets, permissions
 from store.models import StoreItem, Category, Order
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -42,6 +43,8 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = StoreItem.objects.all()
     serializer_class = ItemSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category']    
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

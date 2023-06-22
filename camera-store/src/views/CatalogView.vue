@@ -15,6 +15,7 @@ import Sidebar from '/src/components/Sidebar.vue';
         >
           <v-card
     class="mx-auto"
+    min-width="300"
     max-width="500"
   >
     <v-img
@@ -53,14 +54,23 @@ import Sidebar from '/src/components/Sidebar.vue';
     return { items: [] }
   },
   created: function() {
-    axios.get('/api/items/')
-    .then((response) => {
+    if (this.$route.params.id === 'all')  {
+      axios.get('/api/items/').then((response) => {
       console.log(response.data);
       this.items = response.data;
     })
     .catch(function (error) {
       console.log(error);
     });
+    } else {
+      axios.get('/api/items/?category=' + this.$route.params.id).then((response) => {
+      console.log(response.data);
+      this.items = response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    }
   }
 }
 </script>

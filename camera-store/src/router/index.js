@@ -14,9 +14,14 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/catalog',
+      path: '/catalog/all',
       name: 'catalog',
       component: () => import('../views/CatalogView.vue')
+    },
+    {
+      path: '/catalog/:id',
+      name: 'catalog',
+      component: () => import('../views/CatalogView.vue'),
     },
   ]
 })

@@ -1,1 +1,0 @@
-import{S as a}from"./Sidebar-00553fed.js";import{o as t,c as o,a as s,b as e}from"./index-6a89258d.js";const n=e("div",{class:"MainContent"},[e("h1",null,"This is an about page")],-1),m={__name:"AboutView",setup(r){return(c,i)=>(t(),o("main",null,[s(a),n]))}};export{m as default};

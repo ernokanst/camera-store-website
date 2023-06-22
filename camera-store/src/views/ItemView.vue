@@ -10,7 +10,7 @@
       <h1>{{item.name}}</h1>
       <h3>{{item.description}}</h3>
       <div style="margin-top: auto">
-        <v-btn class="text-white" color="#58838C">В корзину</v-btn>
+        <v-btn class="text-white" color="#365359">В корзину</v-btn>
         <h1>{{item.price}}₽</h1>
         <h4>В наличии: {{item.quantity}}</h4>
       </div>

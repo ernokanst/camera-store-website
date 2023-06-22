@@ -51,7 +51,7 @@ import Sidebar from '/src/components/Sidebar.vue';
     <div class="textblock" style="display: flex; flex-direction: row;">
       <h1>Итого: {{total}}₽</h1>
       <v-spacer></v-spacer>
-      <v-btn class="text-white" color="#58838C">Оформить заказ</v-btn>
+      <v-btn class="text-white" color="#365359" href="/order">Оформить заказ</v-btn>
     </div>
 </div>
 </main>

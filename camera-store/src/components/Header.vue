@@ -7,7 +7,7 @@
           <v-btn color="#F2F2F2" variant="text" :ripple="false" href="/">Новости и акции</v-btn>
           <v-btn color="#F2F2F2" variant="text" :ripple="false" href="/">Доставка и оплата</v-btn>
           <v-btn color="#F2F2F2" variant="text" :ripple="false" href="/">Контакты</v-btn>
-          <v-btn color="#F2F2F2" variant="text" :ripple="false" href="/">Корзина</v-btn>
+          <v-btn color="#F2F2F2" variant="text" :ripple="false" href="/cart">Корзина</v-btn>
         </template>
     </v-app-bar>
   </header>

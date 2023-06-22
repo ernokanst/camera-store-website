@@ -17,28 +17,47 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
 from django.conf.urls.static import static
-from django.contrib.auth.models import User
-from rest_framework import routers, serializers, viewsets, permissions
+from django.contrib.auth.models import User, Group
 from store.models import StoreItem, Category, Order
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django_filters.rest_framework import DjangoFilterBackend
+admin.autodiscover()
+from rest_framework import routers, serializers, viewsets, permissions, generics
+from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, TokenHasScope
 
 # Serializers define the API representation.
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'is_staff']
+        fields = ['username', 'email', "first_name", "last_name"]
 
-# ViewSets define the view behavior.
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ["name"]
 
+class UserList(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserDetails(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated, TokenHasReadWriteScope]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class GroupList(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated, TokenHasScope]
+    required_scopes = ['groups']
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
 
 class ItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -51,6 +70,7 @@ class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category']
+    permission_classes = [permissions.AllowAny]
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -62,6 +82,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [permissions.AllowAny]        
 
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
@@ -99,6 +120,10 @@ urlpatterns = [
     path('', include('store.urls')),
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('users/', UserList.as_view()),
+    path('users/<pk>/', UserDetails.as_view()),
+    path('groups/', GroupList.as_view()),    
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,6 +4,7 @@ from django.core.mail import send_mail, mail_admins
 from django.utils import timezone
 from django.utils.timezone import make_aware
 from .models import Category, StoreItem, Order
+from instant.producers import publish
 
 
 class OrderAdmin(admin.ModelAdmin):
@@ -37,6 +38,16 @@ class OrderAdmin(admin.ModelAdmin):
             mail_admins(subject=subject, message=message, html_message=None)
 
 
-admin.site.register(StoreItem)
+class StoreItemAdmin(admin.ModelAdmin):
+    actions = ["announce_items"]
+
+    @admin.action(description="Анонсировать товар")
+    def announce_items(self, request, queryset):
+        if queryset:
+            for item in queryset:
+                publish("announcements", f"В нашем магазине теперь продаётся {item.name}! Всего за {item.price}₽!")
+
+
+admin.site.register(StoreItem, StoreItemAdmin)
 admin.site.register(Category)
 admin.site.register(Order, OrderAdmin)

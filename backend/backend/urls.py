@@ -126,4 +126,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('instant/', include("instant.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

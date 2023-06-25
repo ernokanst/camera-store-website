@@ -1,0 +1,9 @@
+{
+  "port": 8001,
+  "admin": true,
+  "token_hmac_secret_key": "23eb6c0d-c834-485f-a374-e9d7165a64ac",
+  "admin_password": "2744eade-ec4d-4d14-ab9e-a8a7e6b0a51f",
+  "admin_secret": "9ecfb5fc-13ed-465d-94bf-a1d142cc4b1f",
+  "api_key": "458cda65-4cd4-47a7-99b6-686f220a69f2",
+  "allowed_origins": "http://127.0.0.1:8000"
+}

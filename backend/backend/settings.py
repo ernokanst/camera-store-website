@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 # Application definition
 
 INSTALLED_APPS = [
+    'instant',
     'oauth2_provider',
     'django_filters',
     'django_celery_beat',
@@ -49,9 +50,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.cache.UpdateCacheMiddleware',
+#    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
+#    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -156,12 +157,12 @@ ADMINS = [("ernokanst", "ernokanst@gmail.com")]
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
-    }
-}
+#CACHES = {
+#    "default": {
+#        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+#        "LOCATION": "redis://127.0.0.1:6379",
+#    }
+#}
 
 CACHE_MIDDLEWARE_ALIAS = 'default'
 
@@ -175,3 +176,9 @@ OAUTH2_PROVIDER = {
     # this is the list of available scopes
     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
 }
+
+CENTRIFUGO_HOST = "http://localhost"
+CENTRIFUGO_PORT = 8001
+CENTRIFUGO_HMAC_KEY = "23eb6c0d-c834-485f-a374-e9d7165a64ac"
+CENTRIFUGO_API_KEY = "458cda65-4cd4-47a7-99b6-686f220a69f2"
+SITE_NAME = "Магазин" # used in the messages to identify where they come from
